@@ -52,13 +52,29 @@
 		F01451082492CE12001F3D9F /* AppleRSSApp */ = {
 			isa = PBXGroup;
 			children = (
+				F014511E2492D3BE001F3D9F /* Resources */,
+				F014511D2492D3A9001F3D9F /* Supporting Files */,
 				F01451092492CE12001F3D9F /* AppDelegate.swift */,
 				F014510D2492CE12001F3D9F /* ViewController.swift */,
-				F01451122492CE13001F3D9F /* Assets.xcassets */,
+			);
+			path = AppleRSSApp;
+			sourceTree = "<group>";
+		};
+		F014511D2492D3A9001F3D9F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				F01451142492CE13001F3D9F /* LaunchScreen.storyboard */,
 				F01451172492CE13001F3D9F /* Info.plist */,
 			);
-			path = AppleRSSApp;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F014511E2492D3BE001F3D9F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F01451122492CE13001F3D9F /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,7 +285,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AppleRSSApp/Info.plist;
+				INFOPLIST_FILE = "AppleRSSApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -286,7 +302,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AppleRSSApp/Info.plist;
+				INFOPLIST_FILE = "AppleRSSApp/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
