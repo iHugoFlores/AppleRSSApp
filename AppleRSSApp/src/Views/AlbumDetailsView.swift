@@ -51,12 +51,13 @@ class AlbumDetailsView: BaseView {
     }
     
     private func setUpMainLayout() {
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         view.backgroundColor = .systemBackground
         view.addSubview(albumImage)
         albumImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         albumImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        albumImage.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20).isActive = true
+        albumImage.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
         albumImage.bottomAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         view.addSubview(descriptionLabel)
@@ -78,10 +79,44 @@ class AlbumDetailsView: BaseView {
     private func setUpInitialValues() {
         guard let viewModel = viewModel else { return }
         albumImage.image = UIImage(data: viewModel.getAlbumImageData() ?? Data())
-        let description = viewModel.getAlbumDescription()
-        descriptionLabel.text = "\(description.albumName)\n\(description.artist)\n\(description.releaseDate)"
+        setDescription()
     }
-    
+
+    private func setDescription() {
+        guard let viewModel = viewModel else { return }
+        let description = viewModel.getAlbumDescription()
+        let stringContent = NSMutableAttributedString(
+            string: "\(description.albumName)\n",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 25)
+        ])
+        stringContent.append(NSAttributedString(
+            string: "\(description.artist)\n",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18),
+                NSAttributedString.Key.foregroundColor: UIColor.gray,
+        ]))
+        stringContent.append(NSAttributedString(
+            string: "\(description.releaseDate)\n",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+                NSAttributedString.Key.foregroundColor: UIColor.gray,
+        ]))
+        stringContent.append(NSAttributedString(
+            string: "\(description.genre)\n",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+                NSAttributedString.Key.foregroundColor: UIColor.systemBlue,
+        ]))
+        stringContent.append(NSAttributedString(
+            string: "\(description.copyRight)",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),
+                NSAttributedString.Key.foregroundColor: UIColor.systemGray3,
+        ]))
+        descriptionLabel.attributedText = stringContent
+    }
+
     @objc func doubleTapped(sender: UIButton) {
         viewModel?.navigateToWebView(navigationController: navigationController)
     }

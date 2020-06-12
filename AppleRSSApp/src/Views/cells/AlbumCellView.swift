@@ -20,14 +20,15 @@ class AlbumCellView: UITableViewCell {
         image.contentMode = .scaleAspectFill
         image.constraintTo(width: 120, height: 90)
         image.clipsToBounds = true
+        image.layer.cornerRadius = 8
         return image
     }()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        // label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .left
-        label.numberOfLines = 3
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
     
@@ -35,8 +36,6 @@ class AlbumCellView: UITableViewCell {
         let view = UIStackView()
         view.axis = .horizontal
         view.spacing = 12
-        //view.isLayoutMarginsRelativeArrangement = true
-        //view.layoutMargins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         return view
     }()
 
@@ -75,8 +74,23 @@ class AlbumCellView: UITableViewCell {
 
     private func setInitialValues() {
         setUpDataBinding()
-        let description = viewModel?.getAlbumDescription()
-        descriptionLabel.text = "\(description?.album ?? "")\n\(description?.artist ?? "")"
         viewModel?.getAlbumImage()
+        setDescription()
+    }
+    
+    private func setDescription() {
+        let description = viewModel?.getAlbumDescription()
+        let stringContent = NSMutableAttributedString(
+            string: "\(description?.album ?? "")\n",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)
+        ])
+        stringContent.append(NSAttributedString(
+            string: "\(description?.artist ?? "")",
+            attributes: [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+                NSAttributedString.Key.foregroundColor: UIColor.gray,
+        ]))
+        descriptionLabel.attributedText = stringContent
     }
 }

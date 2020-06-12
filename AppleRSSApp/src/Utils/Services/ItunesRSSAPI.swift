@@ -20,10 +20,17 @@ final class ItunesRSSAPI {
     }
     
     static func getAlbumImage(interface: NetworkInterface, url: String, handler: @escaping ((NetworkResponse<Data>) -> Void)) {
-        guard let url = URL(string: url) else { fatalError("Invalid image URL") }
-        let request = URLRequest(url: url)
+        if let cachedData = cachedImages.object(forKey: url as NSString) {
+            handler(NetworkResponse(data: cachedData as Data))
+            return
+        }
+        guard let urlObj = URL(string: url) else { fatalError("Invalid image URL") }
+        let request = URLRequest(url: urlObj)
         interface.getRawData(request: request) { (response) in
             handler(response)
+            if let rawData = response.rawData {
+                self.cachedImages.setObject(rawData as NSData, forKey: url as NSString)
+            }
         }
     }
 }

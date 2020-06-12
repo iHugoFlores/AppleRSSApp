@@ -49,4 +49,9 @@ class NetworkResponse<Model> where Model: Decodable {
             self.error = .jsonParsingError(error)
         }
     }
+    
+    init(data: Data?) {
+        rawData = data
+        error = .ok
+    }
 }

@@ -30,6 +30,10 @@ class AlbumsListView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     func setUpDataBinding() {
         viewModel?.reloadTableHandler = tableView.reloadData
     }

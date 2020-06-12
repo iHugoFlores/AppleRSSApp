@@ -21,14 +21,14 @@ class AlbumDetailsViewModel: BaseViewModel {
     
     func getAlbumImageData() -> Data? { model?.albumImageData }
     
-    func getAlbumDescription() -> (albumName: String, artist: String, genre: [String], releaseDate: String, copyRight: String) {
+    func getAlbumDescription() -> (albumName: String, artist: String, genre: String, releaseDate: String, copyRight: String) {
         guard let model = model else { fatalError("No model") }
         let (album, artist) = model.getAlbumDescription()
         return (
             albumName: album,
             artist: artist,
-            genre: model.model?.genres.map { $0.name } ?? [],
-            releaseDate: model.model?.releaseDate ?? "",
+            genre: model.model?.genres.map { $0.name }.joined(separator: ", ") ?? "",
+            releaseDate: DateUtil.apiDateToMediumDate(model.model?.releaseDate ?? ""),
             copyRight: model.model?.copyright ?? ""
         )
     }

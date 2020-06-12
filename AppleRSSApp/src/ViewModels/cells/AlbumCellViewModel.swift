@@ -38,7 +38,6 @@ class AlbumCellViewModel: BaseViewModel {
             switch response.error {
             case .ok:
                 self?.albumImageData = response.rawData
-                self?.isDataLoading = false
             default:
                 self?.albumImageData = Data()
             }
