@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct MainResponse: Decodable {
+struct MainResponse: Codable {
     let feed: Feed
 }
 
-struct Feed: Decodable {
+struct Feed: Codable {
     let title: String
     let icon: String
-    let results: [Result]
+    let results: [Album]
 }
 
-struct Result: Decodable {
+struct Album: Codable {
     let artistName, releaseDate, name: String
     let copyright: String
     let artistUrl: String
@@ -27,7 +27,7 @@ struct Result: Decodable {
     let url: String
 }
 
-struct Genre: Decodable {
+struct Genre: Codable {
     let genreId, name: String
     let url: String
 }

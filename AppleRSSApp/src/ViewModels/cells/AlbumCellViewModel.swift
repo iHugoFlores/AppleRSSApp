@@ -9,7 +9,7 @@
 import Foundation
 
 class AlbumCellViewModel: BaseViewModel {
-    var model: Result?
+    var model: Album?
 
     var setImageHandler: ((Data) -> Void)?
 
@@ -23,7 +23,7 @@ class AlbumCellViewModel: BaseViewModel {
         }
     }
     
-    init(networkHandler: NetworkInterface, model: Result) {
+    init(networkHandler: NetworkInterface, model: Album) {
         super.init(networkHandler: networkHandler)
         self.model = model
     }
