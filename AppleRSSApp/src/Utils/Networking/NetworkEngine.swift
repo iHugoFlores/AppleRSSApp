@@ -9,9 +9,15 @@
 import Foundation
 
 class NetworkEngine: NetworkInterface {
-    func getData<Model>(request: URLRequest, completion: @escaping ((NetworkResponse<Model>) -> Void)) where Model : Decodable {
+    func getRawData(request: URLRequest, completion: @escaping ((NetworkResponse<Data>) -> Void)) {
         URLSession.shared.dataTask(with: request) {
             completion(NetworkResponse(data: $0, response: $1, error: $2))
+        }.resume()
+    }
+
+    func getData<Model>(request: URLRequest, completion: @escaping ((NetworkResponse<Model>) -> Void)) where Model : Decodable {
+        URLSession.shared.dataTask(with: request) {
+            completion(NetworkResponse(data: $0, response: $1, error: $2, raw: true))
         }.resume()
     }
 }

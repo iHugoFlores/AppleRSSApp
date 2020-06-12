@@ -33,7 +33,7 @@ class BaseView: UIViewController {
         baseViewModel?.presentAlertHandler = displayAlert(title:message:buttonMessage:callback:)
     }
     
-    private func setActivityIndicatorState(isShowing: Bool) {
+    func setActivityIndicatorState(isShowing: Bool) {
         isShowing ? spinnerView.presentOn(parent: view) : spinnerView.stop()
     }
     

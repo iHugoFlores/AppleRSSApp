@@ -10,6 +10,11 @@
 		F014510A2492CE12001F3D9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01451092492CE12001F3D9F /* AppDelegate.swift */; };
 		F01451132492CE13001F3D9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01451122492CE13001F3D9F /* Assets.xcassets */; };
 		F01451162492CE13001F3D9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01451142492CE13001F3D9F /* LaunchScreen.storyboard */; };
+		F02910572493A9A800B3A492 /* AlbumCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02910562493A9A800B3A492 /* AlbumCellView.swift */; };
+		F029105A2493AD9900B3A492 /* AlbumCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02910592493AD9900B3A492 /* AlbumCellViewModel.swift */; };
+		F029105C2493BEF300B3A492 /* AlbumDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029105B2493BEF300B3A492 /* AlbumDetailsView.swift */; };
+		F029105E2493C02C00B3A492 /* AlbumDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029105D2493C02C00B3A492 /* AlbumDetailsViewModel.swift */; };
+		F02910602493CD8600B3A492 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029105F2493CD8600B3A492 /* WebView.swift */; };
 		F05CF3A02492D7F7009BF48E /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05CF39F2492D7F7009BF48E /* NetworkInterface.swift */; };
 		F0CF92DB2492DACA0070B833 /* NetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DA2492DACA0070B833 /* NetworkEngine.swift */; };
 		F0CF92DD2492DBB80070B833 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DC2492DBB80070B833 /* NetworkResponse.swift */; };
@@ -30,6 +35,11 @@
 		F01451122492CE13001F3D9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F01451152492CE13001F3D9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F01451172492CE13001F3D9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F02910562493A9A800B3A492 /* AlbumCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCellView.swift; sourceTree = "<group>"; };
+		F02910592493AD9900B3A492 /* AlbumCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCellViewModel.swift; sourceTree = "<group>"; };
+		F029105B2493BEF300B3A492 /* AlbumDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsView.swift; sourceTree = "<group>"; };
+		F029105D2493C02C00B3A492 /* AlbumDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewModel.swift; sourceTree = "<group>"; };
+		F029105F2493CD8600B3A492 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F05CF39F2492D7F7009BF48E /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
 		F0CF92DA2492DACA0070B833 /* NetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
 		F0CF92DC2492DBB80070B833 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
@@ -102,8 +112,10 @@
 		F01451202492D633001F3D9F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				F02910582493AD7600B3A492 /* cells */,
 				F0CF92E82492F0F50070B833 /* AlbumsListViewModel.swift */,
 				F0CF92EA2492F1510070B833 /* BaseViewModel.swift */,
+				F029105D2493C02C00B3A492 /* AlbumDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -111,9 +123,12 @@
 		F01451212492D643001F3D9F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0CF92EE2492F3C70070B833 /* components */,
+				F02910552493A98800B3A492 /* cells */,
+				F0CF92EE2492F3C70070B833 /* common */,
 				F0CF92E62492F08F0070B833 /* AlbumsListView.swift */,
 				F0CF92EC2492F30C0070B833 /* BaseView.swift */,
+				F029105B2493BEF300B3A492 /* AlbumDetailsView.swift */,
+				F029105F2493CD8600B3A492 /* WebView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -127,6 +142,22 @@
 				F014511F2492D46A001F3D9F /* Models */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		F02910552493A98800B3A492 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				F02910562493A9A800B3A492 /* AlbumCellView.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		F02910582493AD7600B3A492 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				F02910592493AD9900B3A492 /* AlbumCellViewModel.swift */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 		F05CF39A2492D793009BF48E /* Utils */ = {
@@ -166,12 +197,12 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		F0CF92EE2492F3C70070B833 /* components */ = {
+		F0CF92EE2492F3C70070B833 /* common */ = {
 			isa = PBXGroup;
 			children = (
 				F0CF92EF2492F3DB0070B833 /* Spinner.swift */,
 			);
-			path = components;
+			path = common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,7 +278,9 @@
 				F0CF92DD2492DBB80070B833 /* NetworkResponse.swift in Sources */,
 				F0CF92EB2492F1510070B833 /* BaseViewModel.swift in Sources */,
 				F0CF92E92492F0F50070B833 /* AlbumsListViewModel.swift in Sources */,
+				F029105C2493BEF300B3A492 /* AlbumDetailsView.swift in Sources */,
 				F05CF3A02492D7F7009BF48E /* NetworkInterface.swift in Sources */,
+				F02910572493A9A800B3A492 /* AlbumCellView.swift in Sources */,
 				F0CF92ED2492F30C0070B833 /* BaseView.swift in Sources */,
 				F0CF92E12492E4B20070B833 /* Feed.swift in Sources */,
 				F0CF92DB2492DACA0070B833 /* NetworkEngine.swift in Sources */,
@@ -256,6 +289,9 @@
 				F0CF92F22492F40A0070B833 /* UIView+Ext.swift in Sources */,
 				F0CF92E72492F08F0070B833 /* AlbumsListView.swift in Sources */,
 				F014510A2492CE12001F3D9F /* AppDelegate.swift in Sources */,
+				F029105A2493AD9900B3A492 /* AlbumCellViewModel.swift in Sources */,
+				F02910602493CD8600B3A492 /* WebView.swift in Sources */,
+				F029105E2493C02C00B3A492 /* AlbumDetailsViewModel.swift in Sources */,
 				F0CF92DF2492E39A0070B833 /* ItunesRSSAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

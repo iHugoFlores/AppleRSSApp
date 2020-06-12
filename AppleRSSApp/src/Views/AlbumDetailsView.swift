@@ -1,0 +1,88 @@
+//
+//  AlbumDetailsView.swift
+//  AppleRSSApp
+//
+//  Created by Hugo Flores Perez on 6/12/20.
+//  Copyright © 2020 Hugo Flores Perez. All rights reserved.
+//
+
+import UIKit
+
+class AlbumDetailsView: BaseView {
+    
+    private var viewModel: AlbumDetailsViewModel?
+    
+    private let albumImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let itunesButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("See in Itunes", for: .normal)
+        button.backgroundColor = .systemBlue
+        return button
+    }()
+
+    init(viewModel: AlbumDetailsViewModel) {
+        super.init(viewModel: viewModel)
+        self.viewModel = viewModel
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpMainLayout()
+        setUpInitialValues()
+    }
+    
+    private func setUpMainLayout() {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        view.backgroundColor = .systemBackground
+        view.addSubview(albumImage)
+        albumImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        albumImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        albumImage.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20).isActive = true
+        albumImage.bottomAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.addSubview(descriptionLabel)
+        descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8).isActive = true
+        descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: albumImage.bottomAnchor, constant: 8).isActive = true
+        
+        view.addSubview(itunesButton)
+        itunesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        itunesButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        itunesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        itunesButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20).isActive = true
+        
+        let fastTapGesture = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        fastTapGesture.numberOfTapsRequired = 2
+        itunesButton.addGestureRecognizer(fastTapGesture)
+    }
+    
+    private func setUpInitialValues() {
+        guard let viewModel = viewModel else { return }
+        albumImage.image = UIImage(data: viewModel.getAlbumImageData() ?? Data())
+        let description = viewModel.getAlbumDescription()
+        descriptionLabel.text = "\(description.albumName)\n\(description.artist)\n\(description.releaseDate)"
+    }
+    
+    @objc func doubleTapped(sender: UIButton) {
+        viewModel?.navigateToWebView(navigationController: navigationController)
+    }
+}

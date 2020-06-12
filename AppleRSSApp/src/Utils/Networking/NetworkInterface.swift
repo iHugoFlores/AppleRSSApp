@@ -10,4 +10,5 @@ import Foundation
 
 protocol NetworkInterface {
     func getData<Model>(request: URLRequest, completion: @escaping ((NetworkResponse<Model>) -> Void))
+    func getRawData(request: URLRequest, completion: @escaping ((NetworkResponse<Data>) -> Void))
 }

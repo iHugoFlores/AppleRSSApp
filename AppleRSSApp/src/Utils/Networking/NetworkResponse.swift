@@ -19,10 +19,11 @@ public enum NetworkError: Error {
 
 class NetworkResponse<Model> where Model: Decodable {
     var data: Model?
+    var rawData: Data?
     var response: HTTPURLResponse?
     var error: NetworkError = .ok
 
-    init(data: Data?, response: URLResponse?, error: Error?) {
+    init(data: Data?, response: URLResponse?, error: Error?, raw: Bool = false) {
         if let error = error {
             self.error = .unexpectedError(error)
             return
@@ -38,6 +39,10 @@ class NetworkResponse<Model> where Model: Decodable {
         default: self.error = .unhandled
         }
         guard let data = data else { return }
+        if !raw {
+            self.rawData = data
+            return
+        }
         do {
             self.data = try JSONDecoder().decode(Model.self, from: data)
         } catch let error {
