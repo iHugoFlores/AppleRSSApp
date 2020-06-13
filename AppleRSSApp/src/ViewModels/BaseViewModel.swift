@@ -15,9 +15,7 @@ class BaseViewModel {
         didSet {
             if oldValue == isDataLoading { return }
             guard let handler = activityIndicatorHandler else { return }
-            DispatchQueue.main.async { [weak self] in
-                handler(self?.isDataLoading ?? false)
-            }
+            handler(isDataLoading)
         }
     }
     var activityIndicatorHandler: ((Bool) -> Void)?

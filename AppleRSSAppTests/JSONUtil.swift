@@ -8,16 +8,14 @@
 
 import Foundation
 
-public enum JSONUtilError: Error {
+enum JSONUtilError: Error {
     case resourceNotFound
     case dataParsing(Error)
     case jsonParsing(Error)
 }
 
-final class JSONUtil {
-    private init() { fatalError() }
-
-    private static func load(forBunle bundle: Bundle, resourceName: String) -> Result<Data, JSONUtilError> {
+enum JSONUtil {
+    static func load(forBunle bundle: Bundle, resourceName: String) -> Result<Data, JSONUtilError> {
         let fileUrl = bundle.url(forResource: resourceName, withExtension: "json")
         guard let url = fileUrl else {
             return .failure(.resourceNotFound)

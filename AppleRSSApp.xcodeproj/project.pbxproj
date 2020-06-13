@@ -18,10 +18,17 @@
 		F029105E2493C02C00B3A492 /* AlbumDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029105D2493C02C00B3A492 /* AlbumDetailsViewModel.swift */; };
 		F02910602493CD8600B3A492 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F029105F2493CD8600B3A492 /* WebView.swift */; };
 		F02910712493E01E00B3A492 /* DateUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02910702493E01E00B3A492 /* DateUtilTest.swift */; };
-		F02910742493E47F00B3A492 /* FeddTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02910732493E47F00B3A492 /* FeddTest.swift */; };
+		F02910742493E47F00B3A492 /* FeedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02910732493E47F00B3A492 /* FeedTest.swift */; };
 		F02910762493E4B300B3A492 /* FeedResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = F02910752493E4B300B3A492 /* FeedResponse.json */; };
 		F02910782493E51F00B3A492 /* JSONUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02910772493E51F00B3A492 /* JSONUtil.swift */; };
 		F05CF3A02492D7F7009BF48E /* NetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05CF39F2492D7F7009BF48E /* NetworkInterface.swift */; };
+		F06B8716249544AF00A8E26C /* AlbumDetailsViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06B8715249544AF00A8E26C /* AlbumDetailsViewModelTest.swift */; };
+		F06B87192495485300A8E26C /* NavigationInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06B87182495485300A8E26C /* NavigationInterface.swift */; };
+		F06B871B2495496100A8E26C /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06B871A2495496100A8E26C /* UINavigationController+Ext.swift */; };
+		F06B871D24954A4700A8E26C /* MockNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06B871C24954A4700A8E26C /* MockNavigation.swift */; };
+		F06B871F24954D9600A8E26C /* AlbumsListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06B871E24954D9600A8E26C /* AlbumsListViewModelTest.swift */; };
+		F07965AC249554D5007F5095 /* ItunesRSSAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07965AB249554D5007F5095 /* ItunesRSSAPITest.swift */; };
+		F07965AE2495573D007F5095 /* NetworkResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07965AD2495573D007F5095 /* NetworkResponseTest.swift */; };
 		F0CF92DB2492DACA0070B833 /* NetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DA2492DACA0070B833 /* NetworkEngine.swift */; };
 		F0CF92DD2492DBB80070B833 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DC2492DBB80070B833 /* NetworkResponse.swift */; };
 		F0CF92DF2492E39A0070B833 /* ItunesRSSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DE2492E39A0070B833 /* ItunesRSSAPI.swift */; };
@@ -61,10 +68,17 @@
 		F02910652493DFDA00B3A492 /* AppleRSSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleRSSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02910692493DFDA00B3A492 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F02910702493E01E00B3A492 /* DateUtilTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilTest.swift; sourceTree = "<group>"; };
-		F02910732493E47F00B3A492 /* FeddTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeddTest.swift; sourceTree = "<group>"; };
+		F02910732493E47F00B3A492 /* FeedTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTest.swift; sourceTree = "<group>"; };
 		F02910752493E4B300B3A492 /* FeedResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FeedResponse.json; sourceTree = "<group>"; };
 		F02910772493E51F00B3A492 /* JSONUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtil.swift; sourceTree = "<group>"; };
 		F05CF39F2492D7F7009BF48E /* NetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInterface.swift; sourceTree = "<group>"; };
+		F06B8715249544AF00A8E26C /* AlbumDetailsViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewModelTest.swift; sourceTree = "<group>"; };
+		F06B87182495485300A8E26C /* NavigationInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationInterface.swift; sourceTree = "<group>"; };
+		F06B871A2495496100A8E26C /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
+		F06B871C24954A4700A8E26C /* MockNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNavigation.swift; sourceTree = "<group>"; };
+		F06B871E24954D9600A8E26C /* AlbumsListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsListViewModelTest.swift; sourceTree = "<group>"; };
+		F07965AB249554D5007F5095 /* ItunesRSSAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRSSAPITest.swift; sourceTree = "<group>"; };
+		F07965AD2495573D007F5095 /* NetworkResponseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponseTest.swift; sourceTree = "<group>"; };
 		F0CF92DA2492DACA0070B833 /* NetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
 		F0CF92DC2492DBB80070B833 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		F0CF92DE2492E39A0070B833 /* ItunesRSSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRSSAPI.swift; sourceTree = "<group>"; };
@@ -100,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				F0094E522493E90A00593C83 /* AlbumCellViewModelTest.swift */,
+				F06B8715249544AF00A8E26C /* AlbumDetailsViewModelTest.swift */,
+				F06B871E24954D9600A8E26C /* AlbumsListViewModelTest.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -210,6 +226,7 @@
 				F02910692493DFDA00B3A492 /* Info.plist */,
 				F02910772493E51F00B3A492 /* JSONUtil.swift */,
 				F0094E542493EBDB00593C83 /* MockNetwork.swift */,
+				F06B871C24954A4700A8E26C /* MockNavigation.swift */,
 			);
 			path = AppleRSSAppTests;
 			sourceTree = "<group>";
@@ -218,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				F02910702493E01E00B3A492 /* DateUtilTest.swift */,
+				F07965AB249554D5007F5095 /* ItunesRSSAPITest.swift */,
+				F07965AD2495573D007F5095 /* NetworkResponseTest.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -226,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				F02910752493E4B300B3A492 /* FeedResponse.json */,
-				F02910732493E47F00B3A492 /* FeddTest.swift */,
+				F02910732493E47F00B3A492 /* FeedTest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,6 +253,7 @@
 		F05CF39A2492D793009BF48E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F06B87172495483D00A8E26C /* Navigation */,
 				F05CF39D2492D7B7009BF48E /* Services */,
 				F05CF39C2492D7AB009BF48E /* Networking */,
 				F05CF39B2492D79E009BF48E /* Extensions */,
@@ -246,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				F0CF92F12492F40A0070B833 /* UIView+Ext.swift */,
+				F06B871A2495496100A8E26C /* UINavigationController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -266,6 +287,14 @@
 				F0CF92DE2492E39A0070B833 /* ItunesRSSAPI.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		F06B87172495483D00A8E26C /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				F06B87182495485300A8E26C /* NavigationInterface.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		F0CF92EE2492F3C70070B833 /* common */ = {
@@ -377,11 +406,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F06B87192495485300A8E26C /* NavigationInterface.swift in Sources */,
 				F0CF92DD2492DBB80070B833 /* NetworkResponse.swift in Sources */,
 				F0CF92EB2492F1510070B833 /* BaseViewModel.swift in Sources */,
 				F0CF92E92492F0F50070B833 /* AlbumsListViewModel.swift in Sources */,
 				F029105C2493BEF300B3A492 /* AlbumDetailsView.swift in Sources */,
 				F05CF3A02492D7F7009BF48E /* NetworkInterface.swift in Sources */,
+				F06B871B2495496100A8E26C /* UINavigationController+Ext.swift in Sources */,
 				F02910572493A9A800B3A492 /* AlbumCellView.swift in Sources */,
 				F0CF92ED2492F30C0070B833 /* BaseView.swift in Sources */,
 				F0CF92E12492E4B20070B833 /* Feed.swift in Sources */,
@@ -403,10 +434,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0094E532493E90A00593C83 /* AlbumCellViewModelTest.swift in Sources */,
+				F06B871D24954A4700A8E26C /* MockNavigation.swift in Sources */,
 				F02910782493E51F00B3A492 /* JSONUtil.swift in Sources */,
 				F0094E552493EBDB00593C83 /* MockNetwork.swift in Sources */,
-				F02910742493E47F00B3A492 /* FeddTest.swift in Sources */,
+				F06B871F24954D9600A8E26C /* AlbumsListViewModelTest.swift in Sources */,
+				F02910742493E47F00B3A492 /* FeedTest.swift in Sources */,
 				F02910712493E01E00B3A492 /* DateUtilTest.swift in Sources */,
+				F07965AC249554D5007F5095 /* ItunesRSSAPITest.swift in Sources */,
+				F06B8716249544AF00A8E26C /* AlbumDetailsViewModelTest.swift in Sources */,
+				F07965AE2495573D007F5095 /* NetworkResponseTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,11 +20,6 @@ class AlbumCellViewModelTest: XCTestCase {
         genres: [Genre(genreId: "", name: "", url: "")],
         url: "https://itunes.apple.com/us/genre/id15")
     
-    func test_initilizer() {
-        let viewModel = AlbumCellViewModel(networkHandler: MockNetwork(), model: album)
-        XCTAssertNotNil(viewModel.model)
-    }
-    
     func test_getAlbumDescription() {
         let viewModel = AlbumCellViewModel(networkHandler: MockNetwork(), model: album)
         let (albumVal, artistVal) = viewModel.getAlbumDescription()

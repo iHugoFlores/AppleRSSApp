@@ -7,15 +7,13 @@
 //
 
 import Foundation
-import UIKit.UINavigationController
 
 class AlbumsListViewModel: BaseViewModel {
     var reloadTableHandler: (() -> Void)?
     
     private var model: [AlbumCellViewModel] = [] {
         didSet {
-            guard let handler = reloadTableHandler else { return }
-            DispatchQueue.main.async { handler() }
+            if let handler = reloadTableHandler { handler() }
         }
     }
 
@@ -28,22 +26,19 @@ class AlbumsListViewModel: BaseViewModel {
             case .success(let data):
                 self.model = data.feed.results.map { AlbumCellViewModel(networkHandler: self.networkHandler, model: $0) }
             case .failure:
-                guard let handler = self.presentAlertHandler else { return }
-                handler("Download Error", "There was an error while downloading the feed", "Try Again", self.getData)
+                self.displayAlertMessage(title: "Download Error", body: "There was an error while downloading the feed", buttonMsg: "Try Again", callback: self.getData)
             }
         }
     }
     
     func getNumberOfAlbums() -> Int { model.count }
     
-    func getCellViewmodelAt(indexPath: IndexPath) -> AlbumCellViewModel {
-        model[indexPath.row]
-    }
+    func getCellViewmodelAt(indexPath: IndexPath) -> AlbumCellViewModel { model[indexPath.row] }
 
-    func navigateToDetails(navigationController: UINavigationController?, indexPath: IndexPath) {
+    func navigateToDetails(navigationController: NavigationInterface?, indexPath: IndexPath) {
         let result = model[indexPath.row]
         let viewModel = AlbumDetailsViewModel(networkHandler: networkHandler, model: result)
         let viewController = AlbumDetailsView(viewModel: viewModel)
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.navigate(to: viewController)
     }
 }

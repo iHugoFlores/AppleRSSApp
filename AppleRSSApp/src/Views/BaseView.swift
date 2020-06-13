@@ -34,7 +34,10 @@ class BaseView: UIViewController {
     }
     
     func setActivityIndicatorState(isShowing: Bool) {
-        isShowing ? spinnerView.presentOn(parent: view) : spinnerView.stop()
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else { return }
+            isShowing ? self.spinnerView.presentOn(parent: self.view) : self.spinnerView.stop()
+        }
     }
     
     private func displayAlert(title: String, message: String, buttonMessage: String, callback: (() -> Void)?) {
@@ -43,6 +46,8 @@ class BaseView: UIViewController {
         }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: buttonMessage, style: .default, handler: handler))
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {[weak self] in
+            self?.present(alert, animated: true, completion: nil)
+        }
     }
 }

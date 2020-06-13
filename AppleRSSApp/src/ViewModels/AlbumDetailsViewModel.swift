@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit.UINavigationController
 
 class AlbumDetailsViewModel: BaseViewModel {
     private var model: AlbumCellViewModel
@@ -32,11 +31,11 @@ class AlbumDetailsViewModel: BaseViewModel {
         )
     }
     
-    func navigateToWebView(navigationController: UINavigationController?) {
+    func navigateToWebView(navigationController: NavigationInterface?) {
         guard let itunesUrl = URL(string: model.model.url) else { fatalError() }
         let request = URLRequest(url: itunesUrl)
         let viewController = WebView()
         viewController.request = request
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.navigate(to: viewController)
     }
 }

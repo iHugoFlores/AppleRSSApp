@@ -9,7 +9,7 @@
 import XCTest
 @testable import AppleRSSApp
 
-class FeddTest: XCTestCase {
+class FeedTest: XCTestCase {
     func test_JSON_Parsing() {
         let bundle = Bundle(for: type(of: self))
         let result: Result<MainResponse, JSONUtilError> = JSONUtil.loadJSON(forBunle: bundle, resourceName: "FeedResponse")
