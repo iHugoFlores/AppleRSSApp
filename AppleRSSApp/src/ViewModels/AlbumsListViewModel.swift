@@ -22,16 +22,14 @@ class AlbumsListViewModel: BaseViewModel {
     func getData() {
         isDataLoading = true
         ItunesRSSAPI.getFeed(interface: networkHandler) { [weak self] (response) in
-            self?.isDataLoading = false
-            switch response.error {
-            case .ok:
-                guard let data = response.data?.feed.results, let networkHandler = self?.networkHandler else { return }
-                self?.model = data.map { AlbumCellViewModel(networkHandler: networkHandler, model: $0) }
-            default:
-                guard let handler = self?.presentAlertHandler else { return }
-                DispatchQueue.main.async {
-                    handler("Download Error", "There was an error while downloading the feed", "Try Again", self?.getData)
-                }
+            guard let self = self else { return }
+            self.isDataLoading = false
+            switch response {
+            case .success(let data):
+                self.model = data.feed.results.map { AlbumCellViewModel(networkHandler: self.networkHandler, model: $0) }
+            case .failure:
+                guard let handler = self.presentAlertHandler else { return }
+                handler("Download Error", "There was an error while downloading the feed", "Try Again", self.getData)
             }
         }
     }

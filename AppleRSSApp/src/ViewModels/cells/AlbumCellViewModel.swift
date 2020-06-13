@@ -9,7 +9,7 @@
 import Foundation
 
 class AlbumCellViewModel: BaseViewModel {
-    var model: Album?
+    var model: Album
 
     var setImageHandler: ((Data) -> Void)?
 
@@ -17,29 +17,29 @@ class AlbumCellViewModel: BaseViewModel {
         didSet {
             guard let handler = setImageHandler else { return }
             guard let imageData = albumImageData else { return }
-            DispatchQueue.main.async {
-                handler(imageData)
-            }
+            handler(imageData)
         }
     }
     
     init(networkHandler: NetworkInterface, model: Album) {
-        super.init(networkHandler: networkHandler)
         self.model = model
+        super.init(networkHandler: networkHandler)
     }
     
     func getAlbumDescription() -> (album: String, artist: String) {
-        return (album: model?.name ?? "", artist: model?.artistName ?? "")
+        return (album: model.name, artist: model.artistName)
     }
     
     func getAlbumImage() {
-        guard let imageUrl = model?.artworkUrl100 else { return }
-        ItunesRSSAPI.getAlbumImage(interface: networkHandler, url: imageUrl) {[weak self] (response) in
-            switch response.error {
-            case .ok:
-                self?.albumImageData = response.rawData
-            default:
-                self?.albumImageData = Data()
+        isDataLoading = true
+        ItunesRSSAPI.getAlbumImage(interface: networkHandler, url: model.artworkUrl100) {[weak self] (response) in
+            guard let self = self else { return }
+            self.isDataLoading = false
+            switch response {
+            case .success(let data):
+                self.albumImageData = data
+            case .failure:
+                self.albumImageData = Data()
             }
         }
     }

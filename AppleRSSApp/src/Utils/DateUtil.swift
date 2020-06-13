@@ -6,9 +6,9 @@
 //  Copyright © 2020 Hugo Flores Perez. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class DateUtil: NSObject {
+enum DateUtil {
     private static let mediumDateNoTimeFormatter: DateFormatter = {
         let formater = DateFormatter()
         formater.dateStyle = .medium

@@ -16,11 +16,10 @@ extension UIView {
 
     func addToAndFill(parent: UIView) {
         addToParentAndActivateAutolayout(parent: parent)
-        let margins = parent.layoutMarginsGuide
-        self.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
-        self.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
-        self.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
-        self.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
+        self.trailingAnchor.constraint(equalTo: parent.trailingAnchor).isActive = true
+        self.leadingAnchor.constraint(equalTo: parent.leadingAnchor).isActive = true
+        self.topAnchor.constraint(equalTo: parent.topAnchor).isActive = true
+        self.bottomAnchor.constraint(equalTo: parent.bottomAnchor).isActive = true
     }
 
     func addToAndCenter(parent: UIView) {

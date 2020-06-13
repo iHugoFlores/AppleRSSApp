@@ -9,49 +9,34 @@
 import UIKit
 
 public enum NetworkError: Error {
-    case unexpectedError(Error)
+    case requestError(Error)
+    case noResponseError
+    case serverError(HTTPURLResponse)
+    case noDataForParsing
     case jsonParsingError(Error)
-    case serverError
-    case unhandled
-    case noResponseObject
-    case ok
+    case unexpected
 }
 
-class NetworkResponse<Model> where Model: Decodable {
-    var data: Model?
-    var rawData: Data?
-    var response: HTTPURLResponse?
-    var error: NetworkError = .ok
+typealias NetworkResponse = Result
 
-    init(data: Data?, response: URLResponse?, error: Error?, raw: Bool = false) {
+extension NetworkResponse where Failure == NetworkError, Success == Data? {
+    init(data: Data?, response: URLResponse?, error: Error?) {
         if let error = error {
-            self.error = .unexpectedError(error)
+            self = .failure(.requestError(error))
             return
         }
         guard let response = response as? HTTPURLResponse else {
-            self.error = .noResponseObject
+            self = .failure(.noResponseError)
             return
         }
-        self.response = response
-        switch response.statusCode {
-        case 200..<300: break
-        case 300..<600: self.error = .serverError
-        default: self.error = .unhandled
-        }
-        guard let data = data else { return }
-        if !raw {
-            self.rawData = data
+        if !(200..<300 ~= response.statusCode) {
+            self = .failure(.serverError(response))
             return
         }
-        do {
-            self.data = try JSONDecoder().decode(Model.self, from: data)
-        } catch let error {
-            self.error = .jsonParsingError(error)
-        }
+        self = .success(data)
     }
     
     init(data: Data?) {
-        rawData = data
-        error = .ok
+        self = .success(data)
     }
 }

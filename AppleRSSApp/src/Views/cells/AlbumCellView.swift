@@ -26,17 +26,12 @@ class AlbumCellView: UITableViewCell {
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label
-    }()
-    
-    private let mainContainer: UIStackView = {
-        let view = UIStackView()
-        view.axis = .horizontal
-        view.spacing = 12
-        return view
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -48,23 +43,40 @@ class AlbumCellView: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))
+    }
+    
     private func setUpDataBinding() {
         viewModel?.activityIndicatorHandler = setActivityIndicatorState(isShowing:)
         viewModel?.setImageHandler = setAlbumImage(imageData:)
     }
 
     private func setActivityIndicatorState(isShowing: Bool) {
-        isShowing ? spinnerView.presentOn(parent: albumImage) : spinnerView.stop()
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else { return }
+            isShowing ? self.spinnerView.presentOn(parent: self.albumImage) : self.spinnerView.stop()
+        }
     }
     
     private func setAlbumImage(imageData: Data) {
-        albumImage.image = UIImage(data: imageData)
+        DispatchQueue.main.async {[weak self] in
+            let image = UIImage(data: imageData)
+            self?.albumImage.image = image
+        }
     }
 
     private func setUpMainContainer() {
-        mainContainer.addToAndFill(parent: contentView)
-        mainContainer.addArrangedSubview(albumImage)
-        mainContainer.addArrangedSubview(descriptionLabel)
+        contentView.addSubview(albumImage)
+        albumImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        albumImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        
+        contentView.addSubview(descriptionLabel)
+        descriptionLabel.leadingAnchor.constraint(equalTo: albumImage.trailingAnchor, constant: 8).isActive = true
+        descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
     
     func setUp(viewModel: AlbumCellViewModel) {

@@ -10,19 +10,18 @@ import UIKit
 
 class AlbumsListView: BaseView {
     
-    private var viewModel: AlbumsListViewModel?
+    private let viewModel: AlbumsListViewModel
     
     private let tableView: UITableView = {
         let table = UITableView()
         table.tableFooterView = UIView()
-        table.estimatedRowHeight = 10
-        table.rowHeight = UITableView.automaticDimension
+        table.rowHeight = 130
         return table
     }()
     
     init(viewModel: AlbumsListViewModel) {
-        super.init(viewModel: viewModel)
         self.viewModel = viewModel
+        super.init(viewModel: viewModel)
         setUpDataBinding()
     }
 
@@ -34,14 +33,20 @@ class AlbumsListView: BaseView {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    func setUpDataBinding() {
-        viewModel?.reloadTableHandler = tableView.reloadData
+    private func setUpDataBinding() {
+        viewModel.reloadTableHandler = reloadAllTableData
+    }
+    
+    private func reloadAllTableData() {
+        DispatchQueue.main.async {[weak self] in
+            self?.tableView.reloadData()
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMainLayout()
-        viewModel?.getData()
+        viewModel.getData()
     }
     
     private func setUpMainLayout() {
@@ -56,13 +61,13 @@ class AlbumsListView: BaseView {
 
 extension AlbumsListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.getNumberOfAlbums() ?? 0
+        return viewModel.getNumberOfAlbums()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AlbumCellView.reuseIdentifier, for: indexPath) as? AlbumCellView
             else { fatalError("Couldn't cast to AlbumCellView") }
-        guard let cellViewModel = viewModel?.getCellViewmodelAt(indexPath: indexPath) else { fatalError("No view model for cell") }
+        let cellViewModel = viewModel.getCellViewmodelAt(indexPath: indexPath)
         cell.setUp(viewModel: cellViewModel)
         cell.frame.origin.x = -cell.frame.width
         UIView.animate(
@@ -80,6 +85,6 @@ extension AlbumsListView: UITableViewDataSource {
 extension AlbumsListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel?.navigateToDetails(navigationController: navigationController, indexPath: indexPath)
+        viewModel.navigateToDetails(navigationController: navigationController, indexPath: indexPath)
     }
 }

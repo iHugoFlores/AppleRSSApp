@@ -10,34 +10,30 @@ import Foundation
 import UIKit.UINavigationController
 
 class AlbumDetailsViewModel: BaseViewModel {
-    private var model: AlbumCellViewModel?
+    private var model: AlbumCellViewModel
     
     init(networkHandler: NetworkInterface, model: AlbumCellViewModel) {
-        super.init(networkHandler: networkHandler)
         self.model = model
+        super.init(networkHandler: networkHandler)
     }
     
-    func getAlbumName() -> String { model?.model?.name ?? "" }
+    func getAlbumName() -> String { model.model.name }
     
-    func getAlbumImageData() -> Data? { model?.albumImageData }
+    func getAlbumImageData() -> Data? { model.albumImageData }
     
     func getAlbumDescription() -> (albumName: String, artist: String, genre: String, releaseDate: String, copyRight: String) {
-        guard let model = model else { fatalError("No model") }
         let (album, artist) = model.getAlbumDescription()
         return (
             albumName: album,
             artist: artist,
-            genre: model.model?.genres.map { $0.name }.joined(separator: ", ") ?? "",
-            releaseDate: DateUtil.apiDateToMediumDate(model.model?.releaseDate ?? ""),
-            copyRight: model.model?.copyright ?? ""
+            genre: model.model.genres.map { $0.name }.joined(separator: ", "),
+            releaseDate: DateUtil.apiDateToMediumDate(model.model.releaseDate),
+            copyRight: model.model.copyright
         )
     }
     
     func navigateToWebView(navigationController: UINavigationController?) {
-        guard
-            let model = model?.model,
-            let itunesUrl = URL(string: model.url)
-            else { fatalError() }
+        guard let itunesUrl = URL(string: model.model.url) else { fatalError() }
         let request = URLRequest(url: itunesUrl)
         let viewController = WebView()
         viewController.request = request

@@ -6,31 +6,35 @@
 //  Copyright © 2020 Hugo Flores Perez. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-final class ItunesRSSAPI {
-    private static let apiEndpoint = "https://rss.itunes.apple.com/api/v1/us/apple-music/coming-soon/all/50/explicit.json"
-
-    private static var cachedImages = NSCache<NSString, NSData>()
-
-    static func getFeed(interface: NetworkInterface, handler: @escaping ((NetworkResponse<MainResponse>) -> Void)) {
+enum ItunesRSSAPI {
+    private static let apiEndpoint = "https://rss.itunes.apple.com/api/v1/us/apple-music/top-albums/all/100/explicit.json"
+    private static let urlRequest: URLRequest = {
         guard let url = URL(string: apiEndpoint) else { fatalError("Endpoint URL error") }
-        let request = URLRequest(url: url)
-        interface.getData(request: request, completion: handler)
-    }
-    
-    static func getAlbumImage(interface: NetworkInterface, url: String, handler: @escaping ((NetworkResponse<Data>) -> Void)) {
-        if let cachedData = cachedImages.object(forKey: url as NSString) {
-            handler(NetworkResponse(data: cachedData as Data))
-            return
-        }
-        guard let urlObj = URL(string: url) else { fatalError("Invalid image URL") }
-        let request = URLRequest(url: urlObj)
-        interface.getRawData(request: request) { (response) in
-            handler(response)
-            if let rawData = response.rawData {
-                self.cachedImages.setObject(rawData as NSData, forKey: url as NSString)
+        return URLRequest(url: url)
+    }()
+
+    static func getFeed(interface: NetworkInterface, handler: @escaping ((NetworkResponse<MainResponse, NetworkError>) -> Void)) {
+        interface.getData(request: urlRequest, cacheEnabled: false) { (result) in
+            switch result {
+            case .success(let data):
+                do {
+                    guard let data = data else { handler(.failure(.noDataForParsing)); return }
+                    let decodedModel = try JSONDecoder().decode(MainResponse.self, from: data)
+                    handler(.success(decodedModel))
+                } catch let error {
+                    handler(.failure(.jsonParsingError(error)))
+                }
+            case .failure(let error):
+                handler(.failure(error))
             }
         }
+    }
+    
+    static func getAlbumImage(interface: NetworkInterface, url: String, handler: @escaping ((NetworkResponse<Data?, NetworkError>) -> Void)) {
+        guard let urlObj = URL(string: url) else { fatalError("Invalid image URL") }
+        let request = URLRequest(url: urlObj)
+        interface.getData(request: request, cacheEnabled: true, completion: handler)
     }
 }

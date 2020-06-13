@@ -9,6 +9,7 @@
 import Foundation
 
 protocol NetworkInterface {
-    func getData<Model>(request: URLRequest, completion: @escaping ((NetworkResponse<Model>) -> Void))
-    func getRawData(request: URLRequest, completion: @escaping ((NetworkResponse<Data>) -> Void))
+    func getData(request: URLRequest, cacheEnabled: Bool, completion: @escaping ((NetworkResponse<Data?, NetworkError>) -> Void))
+    func getCachedData(key: String) -> Data?
+    func setCachedData(key: String, data: Data)
 }

@@ -10,17 +10,24 @@ import Foundation
 @testable import AppleRSSApp
 
 class MockNetwork: NetworkInterface {
-    var rawData: Data?
-    var response: HTTPURLResponse?
-    var error: NetworkError = .ok
+    var data: Data?
+    var error: NetworkError?
 
-    func getData<Model>(request: URLRequest, completion: @escaping ((NetworkResponse<Model>) -> Void)) where Model : Decodable {
-        let ntwResponse = NetworkResponse<Model>(data: rawData, response: response, error: error)
-        completion(ntwResponse)
+    func getData(request: URLRequest, cacheEnabled: Bool, completion: @escaping ((Result<Data?, NetworkError>) -> Void)) {
+        if let data = data {
+            completion(.success(data))
+            return
+        }
+        if let error = error {
+            completion(.failure(error))
+            return
+        }
+        completion(.failure(.unexpected))
     }
     
-    func getRawData(request: URLRequest, completion: @escaping ((NetworkResponse<Data>) -> Void)) {
-        let ntwResponse = NetworkResponse<Data>(data: rawData, response: response, error: error, raw: true)
-        completion(ntwResponse)
+    func getCachedData(key: String) -> Data? {
+        return nil
     }
+    
+    func setCachedData(key: String, data: Data) {}
 }

@@ -9,14 +9,14 @@
 import UIKit
 
 class BaseView: UIViewController {
-    
-    private var baseViewModel: BaseViewModel?
-    
+
+    private let baseViewModel: BaseViewModel
+
     private let spinnerView = Spinner()
     
     init(viewModel: BaseViewModel) {
-        super.init(nibName: nil, bundle: nil)
         baseViewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
         setUpBaseDataBinding()
     }
 
@@ -29,8 +29,8 @@ class BaseView: UIViewController {
     }
     
     private func setUpBaseDataBinding() {
-        baseViewModel?.activityIndicatorHandler = setActivityIndicatorState(isShowing:)
-        baseViewModel?.presentAlertHandler = displayAlert(title:message:buttonMessage:callback:)
+        baseViewModel.activityIndicatorHandler = setActivityIndicatorState(isShowing:)
+        baseViewModel.presentAlertHandler = displayAlert(title:message:buttonMessage:callback:)
     }
     
     func setActivityIndicatorState(isShowing: Bool) {

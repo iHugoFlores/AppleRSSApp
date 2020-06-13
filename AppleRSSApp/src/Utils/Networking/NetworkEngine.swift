@@ -9,15 +9,29 @@
 import Foundation
 
 class NetworkEngine: NetworkInterface {
-    func getRawData(request: URLRequest, completion: @escaping ((NetworkResponse<Data>) -> Void)) {
-        URLSession.shared.dataTask(with: request) {
+    private var cachedImages = NSCache<NSString, NSData>()
+
+    func getData(request: URLRequest, cacheEnabled: Bool, completion: @escaping ((NetworkResponse<Data?, NetworkError>) -> Void)) {
+        
+        if cacheEnabled, let url = request.url, let cachedData = getCachedData(key: url.absoluteString) {
+            completion(NetworkResponse(data: cachedData))
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) {[weak self] in
             completion(NetworkResponse(data: $0, response: $1, error: $2))
+            if cacheEnabled, let url = request.url {
+                guard let data = $0 else { return }
+                self?.setCachedData(key: url.absoluteString, data: data)
+            }
         }.resume()
     }
-
-    func getData<Model>(request: URLRequest, completion: @escaping ((NetworkResponse<Model>) -> Void)) where Model : Decodable {
-        URLSession.shared.dataTask(with: request) {
-            completion(NetworkResponse(data: $0, response: $1, error: $2, raw: true))
-        }.resume()
+    
+    func getCachedData(key: String) -> Data? {
+        return cachedImages.object(forKey: key as NSString) as Data?
+    }
+    
+    func setCachedData(key: String, data: Data) {
+        cachedImages.setObject(data as NSData, forKey: key as NSString)
     }
 }
