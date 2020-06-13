@@ -29,6 +29,7 @@
 		F06B871F24954D9600A8E26C /* AlbumsListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06B871E24954D9600A8E26C /* AlbumsListViewModelTest.swift */; };
 		F07965AC249554D5007F5095 /* ItunesRSSAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07965AB249554D5007F5095 /* ItunesRSSAPITest.swift */; };
 		F07965AE2495573D007F5095 /* NetworkResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07965AD2495573D007F5095 /* NetworkResponseTest.swift */; };
+		F07965B024955A83007F5095 /* UITableViewCell+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07965AF24955A83007F5095 /* UITableViewCell+Ext.swift */; };
 		F0CF92DB2492DACA0070B833 /* NetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DA2492DACA0070B833 /* NetworkEngine.swift */; };
 		F0CF92DD2492DBB80070B833 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DC2492DBB80070B833 /* NetworkResponse.swift */; };
 		F0CF92DF2492E39A0070B833 /* ItunesRSSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DE2492E39A0070B833 /* ItunesRSSAPI.swift */; };
@@ -79,6 +80,7 @@
 		F06B871E24954D9600A8E26C /* AlbumsListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsListViewModelTest.swift; sourceTree = "<group>"; };
 		F07965AB249554D5007F5095 /* ItunesRSSAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRSSAPITest.swift; sourceTree = "<group>"; };
 		F07965AD2495573D007F5095 /* NetworkResponseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponseTest.swift; sourceTree = "<group>"; };
+		F07965AF24955A83007F5095 /* UITableViewCell+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Ext.swift"; sourceTree = "<group>"; };
 		F0CF92DA2492DACA0070B833 /* NetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
 		F0CF92DC2492DBB80070B833 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		F0CF92DE2492E39A0070B833 /* ItunesRSSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRSSAPI.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				F0CF92F12492F40A0070B833 /* UIView+Ext.swift */,
 				F06B871A2495496100A8E26C /* UINavigationController+Ext.swift */,
+				F07965AF24955A83007F5095 /* UITableViewCell+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				F029105C2493BEF300B3A492 /* AlbumDetailsView.swift in Sources */,
 				F05CF3A02492D7F7009BF48E /* NetworkInterface.swift in Sources */,
 				F06B871B2495496100A8E26C /* UINavigationController+Ext.swift in Sources */,
+				F07965B024955A83007F5095 /* UITableViewCell+Ext.swift in Sources */,
 				F02910572493A9A800B3A492 /* AlbumCellView.swift in Sources */,
 				F0CF92ED2492F30C0070B833 /* BaseView.swift in Sources */,
 				F0CF92E12492E4B20070B833 /* Feed.swift in Sources */,
