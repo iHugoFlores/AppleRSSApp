@@ -30,6 +30,7 @@
 		F07965AC249554D5007F5095 /* ItunesRSSAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07965AB249554D5007F5095 /* ItunesRSSAPITest.swift */; };
 		F07965AE2495573D007F5095 /* NetworkResponseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07965AD2495573D007F5095 /* NetworkResponseTest.swift */; };
 		F07965B024955A83007F5095 /* UITableViewCell+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07965AF24955A83007F5095 /* UITableViewCell+Ext.swift */; };
+		F0AD9DD52496771000213BAB /* NetworkEngineTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AD9DD42496771000213BAB /* NetworkEngineTest.swift */; };
 		F0CF92DB2492DACA0070B833 /* NetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DA2492DACA0070B833 /* NetworkEngine.swift */; };
 		F0CF92DD2492DBB80070B833 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DC2492DBB80070B833 /* NetworkResponse.swift */; };
 		F0CF92DF2492E39A0070B833 /* ItunesRSSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CF92DE2492E39A0070B833 /* ItunesRSSAPI.swift */; };
@@ -81,6 +82,7 @@
 		F07965AB249554D5007F5095 /* ItunesRSSAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRSSAPITest.swift; sourceTree = "<group>"; };
 		F07965AD2495573D007F5095 /* NetworkResponseTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponseTest.swift; sourceTree = "<group>"; };
 		F07965AF24955A83007F5095 /* UITableViewCell+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Ext.swift"; sourceTree = "<group>"; };
+		F0AD9DD42496771000213BAB /* NetworkEngineTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngineTest.swift; sourceTree = "<group>"; };
 		F0CF92DA2492DACA0070B833 /* NetworkEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
 		F0CF92DC2492DBB80070B833 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		F0CF92DE2492E39A0070B833 /* ItunesRSSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRSSAPI.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				F02910702493E01E00B3A492 /* DateUtilTest.swift */,
 				F07965AB249554D5007F5095 /* ItunesRSSAPITest.swift */,
 				F07965AD2495573D007F5095 /* NetworkResponseTest.swift */,
+				F0AD9DD42496771000213BAB /* NetworkEngineTest.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				F02910712493E01E00B3A492 /* DateUtilTest.swift in Sources */,
 				F07965AC249554D5007F5095 /* ItunesRSSAPITest.swift in Sources */,
 				F06B8716249544AF00A8E26C /* AlbumDetailsViewModelTest.swift in Sources */,
+				F0AD9DD52496771000213BAB /* NetworkEngineTest.swift in Sources */,
 				F07965AE2495573D007F5095 /* NetworkResponseTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
