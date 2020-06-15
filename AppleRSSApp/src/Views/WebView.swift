@@ -41,7 +41,7 @@ class WebView: UIViewController {
 }
 
 extension WebView: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
         setActivityIndicatorState(isShowing: false)
     }
 }
